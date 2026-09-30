@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    # Expo SDK packages move in lockstep; bump them with `npx expo install --fix`
+    # during an SDK upgrade rather than one PR at a time.
+    ignore:
+      - dependency-name: 'expo'
+      - dependency-name: 'expo-*'
+      - dependency-name: 'jest-expo'
+      - dependency-name: 'babel-preset-expo'
+      - dependency-name: 'react-native'
+      - dependency-name: 'react'
+    groups:
+      dev-tooling:
+        dependency-type: development
+
+  - package-ecosystem: npm
+    directory: /example
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: 'expo'
+      - dependency-name: 'expo-*'
+      - dependency-name: 'react-native'
+      - dependency-name: 'react'
+
+  - package-ecosystem: gradle
+    directory: /android
+    schedule:
+      interval: monthly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

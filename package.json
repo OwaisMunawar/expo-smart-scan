@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node internal/module_scripts/build.js",
     "clean": "node internal/module_scripts/clean.js",
-    "lint": "eslint src example/App.tsx example/src",
+    "lint": "eslint --max-warnings 0 src example/App.tsx example/src",
     "typecheck": "tsc --noEmit && tsc --noEmit -p example",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -15,7 +15,8 @@
     "format:check": "prettier --check .",
     "prepare": "node internal/module_scripts/prepare.js",
     "open:ios": "node internal/module_scripts/open-ios.js",
-    "open:android": "node internal/module_scripts/open-android.js"
+    "open:android": "node internal/module_scripts/open-android.js",
+    "bench": "tsc -p tsconfig.build.json --module commonjs --moduleResolution node10 --declaration false --declarationMap false --sourceMap false --inlineSources false --outDir .bench && node scripts/bench-parser.js"
   },
   "keywords": [
     "react-native",
