@@ -121,6 +121,14 @@ export function verifyReceipt(receipt: Receipt, lines: readonly TextLine[]): str
   if (receipt.total !== null && !printed.has(Math.abs(receipt.total).toFixed(2))) {
     warnings.push(`Total ${receipt.total.toFixed(2)} does not appear in the recognized text.`);
   }
+  const unprinted = receipt.lineItems.filter(
+    (item) => !printed.has(Math.abs(item.amount).toFixed(2))
+  );
+  if (unprinted.length > 0) {
+    warnings.push(
+      `${unprinted.length} of ${receipt.lineItems.length} item amounts do not appear in the recognized text.`
+    );
+  }
   if (receipt.subtotal !== null && receipt.tax !== null && receipt.total !== null) {
     const expected = roundMoney(receipt.subtotal + receipt.tax);
     // Tips and rounding legitimately push the total up, so only flag a total that is lower.

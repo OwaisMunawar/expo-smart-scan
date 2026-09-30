@@ -123,22 +123,26 @@ struct GeneratedLineItem {
   @Guide(description: "Item name as printed, without quantity or price")
   var name: String
 
-  @Guide(description: "Quantity, if printed")
+  @Guide(description: "Quantity if a count such as '2 x' is printed on the row, otherwise empty")
   var quantity: Int?
 
-  @Guide(description: "Price per unit, if printed")
+  @Guide(description: "Price per unit only if printed as a separate number, otherwise empty")
   var unitPrice: Double?
 
-  @Guide(description: "Line amount. Negative for discounts and coupons.")
+  // Small models tend to "helpfully" multiply quantity by price or flip signs, so the
+  // guide pins the value to what is literally printed.
+  @Guide(description: "The number printed at the right end of the row, copied exactly. Negative only if printed with a minus sign, e.g. '1.00-'.")
   var amount: Double
 }
 
 @available(iOS 26.0, *)
 extension ReceiptExtractor {
   private static let instructions = """
-    You extract data from OCR text of a shopping receipt. The text is noisy: characters \
-    may be misread and columns are separated by two spaces. Only report values that are \
-    printed on the receipt. Leave a field empty rather than guessing. Never invent items.
+    You extract data from OCR text of a shopping receipt. Each line is one printed row; \
+    columns are separated by two spaces, so an item row looks like "Name  4.50". \
+    Characters may be misread. Copy numbers exactly as printed and never calculate them. \
+    Discount rows are items too. Leave a field empty rather than guessing, and never \
+    invent items.
     """
 
   /// The on-device model has a 4k-token context shared by instructions, schema and

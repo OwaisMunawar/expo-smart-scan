@@ -234,10 +234,20 @@ describe('verifyReceipt', () => {
     ]);
   });
 
+  it('flags item amounts that were computed rather than read', () => {
+    const doubled = {
+      ...modelReceipt,
+      lineItems: [{ description: 'Notebook', quantity: 2, unitPrice: 12, amount: 24 }],
+    };
+    expect(verifyReceipt(doubled, ocr.lines)).toEqual([
+      '1 of 1 item amounts do not appear in the recognized text.',
+    ]);
+  });
+
   it('flags a total below subtotal + tax', () => {
     const lines = [line('Subtotal 10.00', 0.1), line('Tax 1.00', 0.2), line('Total 10.00', 0.3)];
-    expect(verifyReceipt({ ...modelReceipt, total: 10, subtotal: 10, tax: 1 }, lines)).toEqual([
-      'Total 10.00 is less than subtotal + tax (11.00).',
-    ]);
+    expect(
+      verifyReceipt({ ...modelReceipt, total: 10, subtotal: 10, tax: 1, lineItems: [] }, lines)
+    ).toEqual(['Total 10.00 is less than subtotal + tax (11.00).']);
   });
 });
