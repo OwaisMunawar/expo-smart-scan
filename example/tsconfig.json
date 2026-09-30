@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-smart-scan": ["../src/index"],
+      "expo-smart-scan/*": ["../src/*"]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "expo-smart-scan",
+  "version": "0.1.0",
+  "description": "On-device document and receipt scanning for Expo: Vision OCR, document detection, and structured receipt extraction with Apple Foundation Models.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "node internal/module_scripts/build.js",
+    "clean": "node internal/module_scripts/clean.js",
+    "lint": "eslint src example/App.tsx example/src",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p example",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "node internal/module_scripts/prepare.js",
+    "open:ios": "node internal/module_scripts/open-ios.js",
+    "open:android": "node internal/module_scripts/open-android.js"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-module",
+    "ocr",
+    "vision",
+    "ml-kit",
+    "receipt",
+    "document-scanner",
+    "foundation-models",
+    "apple-intelligence"
+  ],
+  "repository": "https://github.com/OwaisMunawar/expo-smart-scan",
+  "bugs": {
+    "url": "https://github.com/OwaisMunawar/expo-smart-scan/issues"
+  },
+  "author": "Owais Munawwar <owais.munawar@gmail.com> (https://github.com/OwaisMunawar)",
+  "license": "MIT",
+  "homepage": "https://github.com/OwaisMunawar/expo-smart-scan#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@types/jest": "^29.2.1",
+    "@types/react": "~19.2.2",
+    "babel-preset-expo": "~57.0.13",
+    "eslint": "~9.39.4",
+    "eslint-config-universe": "^15.0.3",
+    "expo": "~57.0.26",
+    "expo-modules-core": "~57.0.20",
+    "jest": "^29.7.0",
+    "jest-expo": "~57.0.5",
+    "prettier": "^3.0.0",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "typescript": "^5.9.2"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.web.ts",
+      "!src/ExpoSmartScanModule.ts",
+      "!src/index.ts",
+      "!src/types.ts",
+      "!src/parser/index.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 90,
+        "branches": 85,
+        "functions": 90,
+        "statements": 90
+      },
+      "./src/parser/": {
+        "lines": 95,
+        "branches": 85,
+        "functions": 95,
+        "statements": 95
+      }
+    }
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  },
+  "files": [
+    "build",
+    "ios",
+    "android",
+    "src",
+    "expo-module.config.json",
+    "!**/__tests__"
+  ]
+}

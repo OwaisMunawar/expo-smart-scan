@@ -1,0 +1,11 @@
+build/
+coverage/
+node_modules/
+example/node_modules/
+example/ios/
+example/android/
+example/.expo/
+package-lock.json
+example/package-lock.json
+android/
+ios/
