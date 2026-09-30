@@ -16,3 +16,9 @@ android {
     abortOnError false
   }
 }
+
+dependencies {
+  // Bundled Latin model: works offline from first launch, at the cost of ~4 MB per ABI.
+  // The unbundled Play Services variant would download on demand instead.
+  implementation 'com.google.mlkit:text-recognition:16.0.1'
+}
