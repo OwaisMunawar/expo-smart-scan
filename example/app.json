@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "expo-smart-scan-example",
+    "name": "Smart Scan",
     "slug": "expo-smart-scan-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "expo.modules.smartscan.example"
@@ -22,6 +22,16 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Pick a receipt photo to scan on device.",
+          "cameraPermission": false
+        }
+      ],
+      "expo-asset"
+    ]
   }
 }
