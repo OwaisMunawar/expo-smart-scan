@@ -1,4 +1,12 @@
-// Reexport the native module. On web, it will be resolved to ExpoSmartScanModule.web.ts
-// and on native platforms to ExpoSmartScanModule.ts
-export { default } from './ExpoSmartScanModule';
-export * from './ExpoSmartScan.types';
+export {
+  getCapabilities,
+  recognizeText,
+  detectDocument,
+  extractReceipt,
+  sanitizeReceipt,
+  verifyReceipt,
+} from './SmartScan';
+export { parseReceipt, groupIntoRows } from './parser';
+export type { ParseReceiptOptions, ParsedReceipt, TotalSource, DateOrder } from './parser';
+export { SmartScanError, SmartScanErrorCode, isSmartScanError } from './errors';
+export type * from './types';
