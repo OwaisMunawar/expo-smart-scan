@@ -28,7 +28,10 @@ updates:
       - dependency-name: 'expo'
       - dependency-name: 'expo-*'
       - dependency-name: 'react-native'
+      - dependency-name: 'react-native-*'
       - dependency-name: 'react'
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: gradle
     directory: /android
